@@ -6,6 +6,7 @@ import com.mohdev.dream_shop.exception.ProductNotFoundException;
 import com.mohdev.dream_shop.repositories.CategoryRepository;
 import com.mohdev.dream_shop.repositories.ProductRepository;
 import com.mohdev.dream_shop.request.AddProductRequest;
+import com.mohdev.dream_shop.request.ProductUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -67,7 +68,26 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public void updateProduct(Long productId, Product product) {
+    public Product updateProduct(Long productId, ProductUpdateRequest product) {
+        return productRepository.findById(productId)
+                .map(existingProduct -> updateExistingProduct(existingProduct, product))
+                .map(productRepository::save)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found"))
+                ;
+    }
+
+    private Product updateExistingProduct(Product existingProduct, ProductUpdateRequest request){
+        existingProduct.setName(request.getName());
+        existingProduct.setBrand(request.getBrand());
+        existingProduct.setPrice(request.getPrice());
+        existingProduct.setDescription(request.getDescription());
+        existingProduct.setInventory(request.getInventory());
+
+        Category category = categoryRepository.findByName(request.getCategory().getName());
+
+        existingProduct.setCategory(category);
+
+        return existingProduct;
 
     }
 

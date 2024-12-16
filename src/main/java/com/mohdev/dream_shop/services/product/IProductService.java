@@ -2,6 +2,7 @@ package com.mohdev.dream_shop.services.product;
 
 import com.mohdev.dream_shop.entities.Product;
 import com.mohdev.dream_shop.request.AddProductRequest;
+import com.mohdev.dream_shop.request.ProductUpdateRequest;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface IProductService {
     Product addProduct(AddProductRequest product);
     Product getProductById(Long id);
     void deleteProductById(Long id);
-    void updateProduct(Long productId, Product product);
+    Product updateProduct(Long productId, ProductUpdateRequest product);
     List<Product> getAllProducts();
     List<Product> getProductsByCategrory(String category);
     List<Product> getProductsByBrand(String brand);
