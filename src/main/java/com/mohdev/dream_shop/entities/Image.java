@@ -1,10 +1,7 @@
 package com.mohdev.dream_shop.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Blob;
 
@@ -13,6 +10,7 @@ import java.sql.Blob;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
