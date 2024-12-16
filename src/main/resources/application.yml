@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: dream-shop
+
+  datasource:
+    username: postgres
+    password: 12345
+    url: jdbc:postgresql://localhost:5432/db_dream_shop?createDatabaseIfNotExist=true
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 9090
