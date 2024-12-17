@@ -5,14 +5,12 @@ import com.mohdev.dream_shop.entities.Image;
 import com.mohdev.dream_shop.entities.Product;
 import com.mohdev.dream_shop.exception.ResourceNotFoundExeption;
 import com.mohdev.dream_shop.repositories.ImageRepository;
-import com.mohdev.dream_shop.services.product.IProductService;
 import com.mohdev.dream_shop.services.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
