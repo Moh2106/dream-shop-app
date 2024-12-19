@@ -3,6 +3,7 @@ package com.mohdev.dream_shop.services.product;
 import com.mohdev.dream_shop.entities.Category;
 import com.mohdev.dream_shop.entities.Product;
 import com.mohdev.dream_shop.exception.ProductNotFoundException;
+import com.mohdev.dream_shop.exception.ResourceNotFoundExeption;
 import com.mohdev.dream_shop.repositories.CategoryRepository;
 import com.mohdev.dream_shop.repositories.ProductRepository;
 import com.mohdev.dream_shop.request.AddProductRequest;
@@ -72,7 +73,7 @@ public class ProductService implements IProductService{
         return productRepository.findById(productId)
                 .map(existingProduct -> updateExistingProduct(existingProduct, product))
                 .map(productRepository::save)
-                .orElseThrow(() -> new ProductNotFoundException("Product not found"))
+                .orElseThrow(() -> new ResourceNotFoundExeption("Product not found"))
                 ;
     }
 
