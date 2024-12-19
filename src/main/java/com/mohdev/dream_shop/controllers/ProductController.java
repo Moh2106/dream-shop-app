@@ -34,7 +34,7 @@ public class ProductController {
             return ResponseEntity.ok(
                     new ApiResponse("success", product)
             );
-        } catch (ResourceNotFoundExeption e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(
                             new ApiResponse(e.getMessage(), null)
@@ -105,7 +105,7 @@ public class ProductController {
             return ResponseEntity.ok(
                     new ApiResponse("success", products)
             );
-        } catch (ResourceNotFoundExeption e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(
                             new ApiResponse(e.getMessage(), null)
@@ -128,7 +128,7 @@ public class ProductController {
             return ResponseEntity.ok(
                     new ApiResponse("success", products)
             );
-        } catch (ResourceNotFoundExeption e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(
                             new ApiResponse(e.getMessage(), null)
@@ -151,7 +151,25 @@ public class ProductController {
             return ResponseEntity.ok(
                     new ApiResponse("success", products)
             );
-        } catch (ResourceNotFoundExeption e) {
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(
+                            new ApiResponse(e.getMessage(), null)
+                    );
+        }
+    }
+
+    @GetMapping("/count/by-brand-and-name/product")
+    public ResponseEntity<ApiResponse> countProductByBrandAndName(@RequestParam String brandName,
+                                                                  @RequestParam String productName){
+        try {
+            Long productCount = productService.countProductByBrandAndName(brandName, productName);
+
+
+            return ResponseEntity.ok(
+                    new ApiResponse("success", productCount)
+            );
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(
                             new ApiResponse(e.getMessage(), null)
@@ -183,7 +201,7 @@ public class ProductController {
             return ResponseEntity.ok(
                     new ApiResponse("Update product success", product)
             );
-        } catch (ResourceNotFoundExeption e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(
                             new ApiResponse(e.getMessage(), null)
@@ -199,11 +217,13 @@ public class ProductController {
             return ResponseEntity.ok(
                     new ApiResponse("Update product success", id)
             );
-        } catch (ResourceNotFoundExeption e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(
                             new ApiResponse(e.getMessage(), null)
                     );
         }
     }
+
+
 }
